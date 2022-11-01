@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-lg-8">
+        <form [formGroup]="myForm" autocomplete="off">
+          <h1 class="text">Crea una cuenta</h1>
+          <div id="card" class="col-lg-12">
+                <mat-form-field class="example-container" [style.fontSize.px]="15">
+                  <mat-label style="font-weight: bold; font-family: 'Be Vietnam', sans-serif;">Nombre</mat-label>
+                  <input matInput formControlName="name" />
+                </mat-form-field>
+                <div 
+                  *ngIf="
+                    myForm.get('name')?.hasError('required') &&
+                    myForm.get('name')?.touched
+                  "
+                >
+                  <span class="mda-form-msg"> Este campo es obligatorio </span>
+                </div>
+                <div
+                  *ngIf="myForm.get('name')?.hasError('maxlength')"
+                >
+                  <span class="mda-form-msg">
+                    Este campo debe tener como máximo 40 caracteres
+                  </span>
+                </div>
+              </div>
+              <div id="card" class="col-lg-12">
+                <mat-form-field class="example-container" [style.fontSize.px]="15">
+                  <mat-label style="font-weight: bold; font-family: 'Be Vietnam', sans-serif;" >RUC</mat-label>
+                  <input type="number" matInput formControlName="RUC" />
+                </mat-form-field>
+                <div
+                  *ngIf="
+                    myForm.get('RUC')?.hasError('required') &&
+                    myForm.get('RUC')?.touched
+                  "
+                >
+                  <span class="mda-form-msg"> Este campo es obligatorio </span>
+                </div>
+                <div
+                  *ngIf="myForm.get('RUC')?.hasError('minlenght')"              
+                >
+                  <span class="mda-form-msg">
+                    Este campo debe tener como máximo 11 digitos
+                  </span>
+                </div>
+              </div>
+              <div id="card" class="col-lg-12">
+                <mat-form-field class="example-container" [style.fontSize.px]="15">
+                  <mat-label style="font-weight: bold; font-family: 'Be Vietnam', sans-serif;">Correo</mat-label>
+                  <input matInput formControlName="email" />
+                </mat-form-field>
+                <div
+                  *ngIf="
+                    myForm.get('email')?.hasError('required') &&
+                    myForm.get('email')?.touched
+                  "
+                >
+                  <span class="mda-form-msg"> Este campo es obligatorio </span>
+                </div>
+                <div
+                  *ngIf="myForm.get('email')?.hasError('email')"
+                     >
+                  <span class="mda-form-msg">
+                    Este campo no tiene formato de correo
+                  </span>
+                </div>
+              </div>
+              <div id="card" class="col-lg-12">
+                <mat-form-field class="example-container" [style.fontSize.px]="15">
+                  <mat-label style="font-weight: bold; font-family: 'Be Vietnam', sans-serif;">Contraseña</mat-label>
+                  <input matInput formControlName="password" />
+                </mat-form-field>
+                <div
+                  *ngIf="
+                    myForm.get('password')?.hasError('required') &&
+                    myForm.get('password')?.touched
+                  "
+                >
+                  <span class="mda-form-msg"> Este campo es obligatorio </span>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="options">
+                <button id="btn_registrar"
+                  class="btn btn-success btn-lg float-right"
+                  [disabled]="myForm.invalid"
+                  type="button"
+                  style="margin-left: 10 px"
+                  (click)="saveUser()"
+                > <span >Registrarme</span>
+            
+                </button>
+                <button id="btn_cancelar"
+                  class="btn btn-secondary btn-lg float-right"
+                  type="button"
+                  routerLink="/"
+                >
+                <span >Cancelar</span>
+                </button>
+              </div>
+              </div>
+        </form>
+        
+    </div>
+  
+  </div>

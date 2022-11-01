@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;	
+	font-family: Raleway, sans-serif;
+    
+}
+.title{
+    text-align: center;
+   font-size:x-large;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.card{	
+	
+	background: linear-gradient(90deg, lightblue, #d6f1f7);		
+    padding: 25px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);position: absolute;	
+    margin: top 100px;
+	height: 380px;
+	width: 360px;	
+	box-shadow: 0px 20px 25px #b8c9e4;
+    border-radius: 20px;
+    display: flex;
+}
+.form-control:active,
+.form-control:focus,
+.form-control:hover {
+	outline: none;
+	border-bottom-color: #1f7fd8;
+}
+#loguser:active,
+#loguser:focus,
+#loguser:hover {
+	border-color: #1f7fd8;
+	outline: none;
+}
+#loguser {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 10px;
+    margin-bottom: 30px;
+	padding: 16px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display:grid;
+	width: 90%;
+	color: #1f7fd8;
+	box-shadow: 0px 2px 2px #1f7fd8;
+	cursor: pointer;
+	transition: .2s;
+}
+#t{
+    margin-top: 50px;
+    margin-bottom: 5px;
+}
+#c{
+    margin-bottom: 5px;
+}
+#text{
+    font-size: 15px;
+    font-weight: 600;
+
+
+}
+#signuser{
+    border-radius: 26px;
+    background: #fff;
+    box-shadow: 0px 2px 2px #1f7fd8;
+    color: #1f7fd8;
+    font-weight: 700;
+
+}
+#textaccount{
+    font-weight: 600;
+    margin-right: 10px;
+    
+}
+.form-control{
+    outline: none;
+    border-style: hidden;
+    text-decoration-line: underline;
+    border-radius: 26px;
+    width: 200px;
+    height: 25px;
+}

@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Julio Toribio",
+      "RUC": "123456789",
+      "email": "juliojtp4598@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "name": "Alejandra",
+      "RUC": 123456789,
+      "email": "alejandra@example.com",
+      "passowrd": "123"
+    }
+  ]
+}
