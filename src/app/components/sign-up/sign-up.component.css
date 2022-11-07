@@ -45,6 +45,8 @@ input::-webkit-inner-spin-button {
   border: none;
   width: 100px;
   margin-left: 10px;
+  cursor: pointer;
+
 }
 #btn_cancelar{
   border-radius: 26px;
@@ -57,6 +59,8 @@ input::-webkit-inner-spin-button {
   width: 100px;
   margin-left: 90px;
   margin-top: 10px;
+  cursor: pointer;
+
 }
 /*background: #fff;
 	font-size: 14px;
