@@ -5,9 +5,10 @@
 	margin: 0;
 	padding: 0;	
 	font-family: Raleway, sans-serif;
-    
 }
+
 .title{
+    position: absolute;
     text-align: center;
     font-size:x-large;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -21,8 +22,8 @@
     left: 50%;
     transform: translate(-50%,-50%);position: absolute;	
     margin: top 100px;
-	height: 380px;
-	width: 360px;	
+	height: 530px;
+	width: 460px;	
 	box-shadow: 0px 20px 25px #b8c9e4;
     border-radius: 20px;
     display: flex;
@@ -40,7 +41,7 @@
 	outline: none;
 }
 #loguser {
-	background: #fff;
+	background: rgb(255, 255, 255);
 	font-size: 14px;
 	margin-top: 10px;
     margin-bottom: 30px;
@@ -56,8 +57,12 @@
 	cursor: pointer;
 	transition: .2s;
 }
-#t{
+#t-first{
     margin-top: 50px;
+    margin-bottom: 5px;
+}
+#t{
+    margin-top: 15px;
     margin-bottom: 5px;
 }
 #c{
@@ -84,9 +89,25 @@
 }
 .form-control{
     outline: none;
+    margin: none;
     border-style: hidden;
     text-decoration-line: underline;
     border-radius: 26px;
-    width: 200px;
+    width: 175px;
     height: 25px;
 }
+.one-half,
+.one-third {
+    position: relative;
+    margin-right: 4%;
+    float: left;
+    
+ 
+}
+ 
+.one-half { width: 48%; }
+.one-third { width: 30.66%; }
+.last {
+    margin-right: 0 !important;
+    clear: right;
+}   
