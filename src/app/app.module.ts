@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MenuComponent } from './menu/menu.component';
+
 import { InputComponent } from './components/input/input.component';
 
 @NgModule({
@@ -15,7 +17,7 @@ import { InputComponent } from './components/input/input.component';
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    InputComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
