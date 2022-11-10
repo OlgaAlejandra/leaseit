@@ -6,19 +6,16 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  basePath: string=environment.basePath;
+  basePath: string=environment.api_url;
   constructor(private http:HttpClient) {}
   getUsers() {
-    return this.http.get<User[]>(this.basePath);
+    return this.http.get<User[]>(`${this.basePath}/users`);
   }
 
   getUserId(id:any){
-    return this.http.get<User>(`${this.basePath}/${id}`);
+    return this.http.get<User>(`${this.basePath}/users/${id}`);
   }
   addUser(user: User) {
-    return this.http.post<User>(
-      this.basePath,
-      user
-    );  
+    return this.http.post<User>(`${this.basePath}/users`,user);  
   }
 }

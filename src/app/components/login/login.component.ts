@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public myForm!: FormGroup;
   user !: User;
   idUser:any;
-  basePath:string=environment.basePath;
+  basePath:string=environment.api_url;
 
 constructor(
   private fb:FormBuilder, 
@@ -30,7 +30,7 @@ constructor(
     })
   }
   login(){
-    this.http.get<any>(this.basePath)
+    this.http.get<any>(`${this.basePath}/users`)
     .subscribe(res=>{
       const user = res.find((a:any)=>{
         return a.email === this.myForm.value.email && a.password === this.myForm.value.password
@@ -40,7 +40,7 @@ constructor(
           duration: 3500,
         });
         this.myForm.reset();
-        this.router.navigate(['/homePage',user.id]);
+        this.router.navigate(['/home',user.id]);
       }else{
         this.snackBar.open('Error en las credenciales!', '', {
           duration: 3000,

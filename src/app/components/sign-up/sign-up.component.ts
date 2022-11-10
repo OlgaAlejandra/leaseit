@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
     this.myForm = this.fb.group({
       id:[''],
       name: ['',[Validators.required,Validators.maxLength(40)]],
-      RUC:['',[Validators.required,Validators.minLength(11) ]],
+      RUC:['',[Validators.required]],
       email:['',[Validators.required,Validators.email]],
       password:['',[Validators.required]],
     })
@@ -33,9 +33,9 @@ export class SignUpComponent implements OnInit {
     const user: User= {
       id: 0,
       name: this.myForm.get('name')!.value,
-      RUC: this.myForm.get("RUC")!.value,
+      RUC: this.myForm.get('RUC')!.value,
       email: this.myForm.get('email')!.value,
-      passowrd: this.myForm.get("password")!.value
+      password: this.myForm.get('password')!.value
     };
     this.userService.addUser(user).subscribe({
       next: (data) => {
