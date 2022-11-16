@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 
 import { InputComponent } from './components/input/input.component';
+import { ListActivosComponent } from './components/list-activos/list-activos.component';
+import { ListArrendadoresComponent } from './components/list-arrendadores/list-arrendadores.component';
+import { OutputComponent } from './components/output/output.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { InputComponent } from './components/input/input.component';
     LoginComponent,
     SignUpComponent,
     MenuComponent,
+    ListActivosComponent,
+    ListArrendadoresComponent,
+    OutputComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
+import { ListArrendadoresComponent } from './components/list-arrendadores/list-arrendadores.component';
+import { ListActivosComponent } from './components/list-activos/list-activos.component';
 import { InputComponent } from './components/input/input.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -9,6 +11,8 @@ const routes: Routes = [
   {path:'signup-user', component: SignUpComponent},
   {path:'input-data', component: InputComponent},
   {path:'home/:id', component: MenuComponent},
+  {path:'list-activos', component:ListActivosComponent},
+  {path:'list-arrendadores', component:ListArrendadoresComponent},
   {path:'', component:LoginComponent}
   
 ];
