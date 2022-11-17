@@ -1,4 +1,5 @@
 export interface Operation {
+    id_operation:number;
     id_usuario:number;
     id_empresa:number;
     id_activo:number;

@@ -3,7 +3,6 @@ import { Arrendador } from './../../models/arrendador';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
 @Component({
   selector: 'app-list-arrendadores',
   templateUrl: './list-arrendadores.component.html',
