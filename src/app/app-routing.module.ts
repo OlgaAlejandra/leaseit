@@ -1,3 +1,4 @@
+import { OutputComponent } from './components/output/output.component';
 import { ListArrendadoresComponent } from './components/list-arrendadores/list-arrendadores.component';
 import { ListActivosComponent } from './components/list-activos/list-activos.component';
 import { InputComponent } from './components/input/input.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'home/:id', component: MenuComponent},
   {path:'list-activos', component:ListActivosComponent},
   {path:'list-arrendadores', component:ListArrendadoresComponent},
+  {path:'final-output', component:OutputComponent},
   {path:'', component:LoginComponent}
   
 ];

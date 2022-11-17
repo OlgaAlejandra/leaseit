@@ -1,11 +1,15 @@
+import { Arrendador } from './../../models/arrendador';
+import { Activo } from './../../models/activo';
 import { Output } from './../../models/output';
 import { Operation } from './../../models/operation';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivoService } from 'src/app/services/activo.service';
+import { ArrendadorService } from 'src/app/services/arrendador.service';
 
 const ELEMENT_DATA: Output[]=[
- 
+  
   /*{ 
     periodo: 6,
     pg:"S",
@@ -33,16 +37,32 @@ const ELEMENT_DATA: Output[]=[
 export class OutputComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nombre', 'TEP'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  arrendador!: Arrendador;
+  activo!: Activo
   columns=[
     {titulo:"test",name:"id"}
   ]
-  constructor() { }
-  /*La idea que tengo es jalar el valor de los otros componentes por el momento
-  dejemoslo aqui*/
+  constructor(private arrendadorService: ArrendadorService,
+              private activoService: ActivoService) { }
+  /*Originalmente como pueden ver en la otra clase con datos de entradas
+  jalamos los datos que vienen con el activo y el arrendador asi que eso mismo pienso hacer
+  vallan ideando una manera de llenar el arreglo con el for siguiendo la logica del excel porfavor
+  voy a estar ocupado con otro curso hasta el domingo*/
   ngOnInit(): void {
+    this.EntryData();
+    ELEMENT_DATA.push()
     for (let i = 0; i < 5; i++) {
 
     }
+  }
+
+  EntryData(){
+    this.arrendadorService.getArrendadorId(1).subscribe((data:Arrendador)=>{
+      this.arrendador = data;
+    });
+    this.activoService.getActivoId(1).subscribe((data:Activo)=>{
+      this.activo = data;
+    });
   }
 
 }
