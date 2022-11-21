@@ -6,6 +6,16 @@
                 <h1 class="title">Leasing</h1>
                 <form>
                     <div id="t-first" class="one-half">
+                        <label id="text" for="exampleInputEmail1" class="form-label">Activo</label>
+                    </div>
+                    <div class="one-half" >
+                        <select formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >   
+                            <option *ngFor="let cat of activo" [value]="">
+                               
+                            </option>    
+                        </select>              
+                    </div>
+                    <div id="t" class="one-half">
                         <label id="text" for="exampleInputEmail1" class="form-label">Prestamo</label>
                     </div>
                     <div class="one-half" >
@@ -36,6 +46,16 @@
                         <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >                  
                     </div>
                     <div id="t-first" class="one-half.last">
+                        <label id="text" for="exampleInputEmail1" class="form-label">Arrendador</label>
+                    </div>
+                    <div class="one-half.last" >
+                        <select formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >    
+                            <option >
+                               
+                            </option>
+                        </select>                    
+                    </div>
+                    <div id="t" class="one-half.last">
                         <label id="text" for="exampleInputEmail1" class="form-label">Moneda</label>
                     </div>
                     <div class="one-half.last" >
