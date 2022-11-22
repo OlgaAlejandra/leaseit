@@ -52,7 +52,6 @@ export class OutputComponent implements OnInit {
     this.EntryData();
     ELEMENT_DATA.push()
     for (let i = 0; i < 5; i++) {
-
     }
   }
 

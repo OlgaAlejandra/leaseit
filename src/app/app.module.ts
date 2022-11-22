@@ -24,6 +24,7 @@ import { OutputComponent } from './components/output/output.component';
     ListActivosComponent,
     ListArrendadoresComponent,
     OutputComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

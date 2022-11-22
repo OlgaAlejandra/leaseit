@@ -11,8 +11,9 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./list-activos.component.css']
 })
 export class ListActivosComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'tipo', 'precio'];
+  displayedColumns: string[] = ['id','nombre','precio','g_inicial'];
   dataSource = new MatTableDataSource<Activo>();
+  variable?: boolean;
 
   activos!: Activo[];
 

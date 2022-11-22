@@ -35,10 +35,25 @@
       <th mat-header-cell *matHeaderCellDef>TEP</th>
       <td mat-cell *matCellDef="let element">{{ element.tep }}</td>
     </ng-container>
+    
+    <ng-container matColumnDef="p_recompra">
+      <th mat-header-cell *matHeaderCellDef>Porcentaje de Recompra</th>
+      <td mat-cell *matCellDef="let element">{{ element.p_recompra }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="comision">
+      <th mat-header-cell *matHeaderCellDef>Comision</th>
+      <td mat-cell *matCellDef="let element">{{ element.comision }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="s_riesgo">
+      <th mat-header-cell *matHeaderCellDef>Seguro de Riesgo</th>
+      <td mat-cell *matCellDef="let element">{{ element.s_riesgo }}</td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-  
   </table>
   
   <mat-paginator

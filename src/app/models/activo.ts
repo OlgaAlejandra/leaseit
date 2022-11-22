@@ -1,5 +1,6 @@
 export interface Activo{
     id: number;
-    tipo: string;
+    nombre: string;
     precio: number;
+    g_inicial:number;
 }

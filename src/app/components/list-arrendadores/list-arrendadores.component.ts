@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./list-arrendadores.component.css']
 })
 export class ListArrendadoresComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'nombre', 'TEP'];
+  displayedColumns: string[] = ['id', 'nombre','TEP','p_recompra','comision','s_riesgo'];
   dataSource = new MatTableDataSource<Arrendador>();
 
   arrendadores!: Arrendador[];

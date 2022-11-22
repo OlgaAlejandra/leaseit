@@ -1,15 +1,15 @@
+import { User } from './user';
 export interface Operation {
     id_operation:number;
-    id_usuario:number;
-    id_empresa:number;
-    id_activo:number;
-    TEP_arrendador:number;
+    user: any;
+    arrendador:any;
+    activo: any;
     moneda:string;
-    cuota:number;
-    amortizacion:number;
-    p_incluido:boolean;
-    p_gracia:number;
-    n_ptype:number;
-    p_type:string;
-
+    pgp_flag:boolean;
+    pgt_flag:boolean;
+    pgt_time:number;
+    pgp_time:number;
+    p_financiado:number;
+    tiempo_o:number;
+    frecuencia_p:number;
 }

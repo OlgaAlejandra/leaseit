@@ -10,13 +10,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path:'signup-user', component: SignUpComponent},
-  {path:'input-data', component: InputComponent},
-  {path:'home/:id', component: MenuComponent},
+  {path:'', component:LoginComponent},
+  {path:'input-data/:id', component: InputComponent},
+  {path:'',redirectTo:'',pathMatch:'full'},
+  {path:'home/:id', component: MenuComponent,
+  children : [
   {path:'list-activos', component:ListActivosComponent},
   {path:'list-arrendadores', component:ListArrendadoresComponent},
-  {path:'final-output', component:OutputComponent},
-  {path:'', component:LoginComponent}
-  
+  {path:'final-output', component:OutputComponent}]}
 ];
 
 @NgModule({

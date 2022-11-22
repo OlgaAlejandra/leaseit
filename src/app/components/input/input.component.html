@@ -3,9 +3,19 @@
     <div class="row">
         <div class="col-md-2">
             <div class="card">
-                <h1 class="title">Leasing</h1>
-                <form>
+                
+                <!-- <form>
                     <div id="t-first" class="one-half">
+                        <label id="text" for="exampleInputEmail1" class="form-label">Arrendador</label>
+                    </div>
+                    <div class="one-half" >
+                        <Select formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" > 
+                              <option *ngFor="let arrendador of arrendadores" [value]="arrendador.id">
+                                {{arrendador.nombre}}
+                              </option>  
+                        </Select>                
+                    </div>
+                    <div id="t" class="one-half">
                         <label id="text" for="exampleInputEmail1" class="form-label">Prestamo</label>
                     </div>
                     <div class="one-half" >
@@ -36,6 +46,16 @@
                         <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >                  
                     </div>
                     <div id="t-first" class="one-half.last">
+                        <label id="text" for="exampleInputEmail1" class="form-label">Activo</label>
+                    </div>
+                    <div class="one-half.last" >
+                        <select formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >   
+                            <option *ngFor="let activo of activos" [value]="activo.id">
+                                {{activo.nombre}}
+                              </option>  
+                        </select>               
+                    </div>
+                    <div id="t" class="one-half.last">
                         <label id="text" for="exampleInputEmail1" class="form-label">Moneda</label>
                     </div>
                     <div class="one-half.last" >
@@ -69,7 +89,129 @@
                     <span>¿El periodo de gracia es parte de los periodos?    </span> <input type="radio" name="radio">  Si  <input type="radio" name="radio">  No
                     <br/>
                  <button id="loguser" type="submit" class="btn btn-primary"><span>Calcular</span><i class="button__icon fas fa-chevron-right"></i></button>
+               </form> -->
+               <form [formGroup]="myForm">
+                <mat-form-field>
+                    <mat-label>Categoría</mat-label>
+                    <mat-select (valueChange)="fillActivo()" formControlName="activo">
+                      <mat-option *ngFor="let activo of activos" [value]="[activo.nombre]">
+                       {{ activo.nombre }} 
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Prestamo"
+                      formControlName="prestamo"
+                      required
+                    />
+                  </mat-form-field>   
+                
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Tasa"
+                      formControlName="tasa"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Tiempo"
+                      formControlName="tiempo"
+                      required
+                    />
+                  </mat-form-field>
+                  
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Periodo de gracia parcial"
+                      formControlName="pgp_flag"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Periodo de gracia total"
+                      formControlName="pgt_flag"
+                      required
+                    />
+                  </mat-form-field>
+                  
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder=" T. Periodo de gracia total"
+                      formControlName="pgt_time"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Arrendadores</mat-label>
+                    <mat-select (valueChange)="fillArrendador()" formControlName="arrendador">
+                      <mat-option *ngFor="let arrendador of arrendadores" [value]="arrendador.id">
+                        {{ arrendador.nombre }} 
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Moneda"
+                      formControlName="moneda"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder=" Tipo de Tasa"
+                      formControlName="tasa_type"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder=" Tiempo de tasa"
+                      formControlName="t_tasa"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder=" Numero de Peridos"
+                      formControlName="n_periodos"
+                      required
+                    />
+                  </mat-form-field>
                </form>
+
+
+               
             </div>
         </div>
     </div>

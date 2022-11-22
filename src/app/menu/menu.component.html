@@ -4,8 +4,10 @@
     <div class="navbar">
       <img src="assets/img/log.png" class="logo">
       <ul>
-        <li><a href="/home">Home</a></li>
+        <li><a routerLink="/home">Home</a></li>
         <li><a href="#">Leasing</a></li>
+        <li><a routerLink="/list-activos">Activos</a></li>
+        <li><a routerLink="/list-arrendadores">Arrendadores</a></li>
       </ul>
     </div>
     <div class="content">
@@ -14,7 +16,7 @@
       <p>El Leasing Financiero es un tipo de contrato de arrendamiento con opción de compra mediante </p>
       <p>el cual una entidad otorga financiamiento a una empresa para adquirir activos. </p>
       <div>
-        <button type="button" routerLink="/final-output"><span></span>LEASE IT</button>
+        <button type="button" [routerLink]="['/input-data',route.snapshot.paramMap.get('id')]"><span></span>LEASE IT</button>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
@@ -12,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -32,7 +34,8 @@ import { MatListModule } from '@angular/material/list';
     MatFormFieldModule,
     MatSidenavModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule
   ],
   exports:[
     MatSliderModule,
@@ -47,7 +50,8 @@ import { MatListModule } from '@angular/material/list';
     MatFormFieldModule,
     MatSidenavModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
   ]
 })
 export class AngularMaterialModule { }
