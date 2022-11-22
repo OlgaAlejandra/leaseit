@@ -91,10 +91,10 @@
                  <button id="loguser" type="submit" class="btn btn-primary"><span>Calcular</span><i class="button__icon fas fa-chevron-right"></i></button>
                </form> -->
                <form [formGroup]="myForm">
-                <mat-form-field>
+                <mat-form-field >
                     <mat-label>Categoría</mat-label>
-                    <mat-select (valueChange)="fillActivo()" formControlName="activo">
-                      <mat-option *ngFor="let activo of activos" [value]="[activo.nombre]">
+                    <mat-select formControlName="activo" (selectionChange)="fillActivo()">
+                      <mat-option [value]="activo.id" *ngFor="let activo of activos" >
                        {{ activo.nombre }} 
                       </mat-option>
                     </mat-select>
@@ -162,9 +162,9 @@
 
                   <mat-form-field>
                     <mat-label>Arrendadores</mat-label>
-                    <mat-select (valueChange)="fillArrendador()" formControlName="arrendador">
+                    <mat-select  (selectionChange)="fillArrendador()" formControlName="arrendador">
                       <mat-option *ngFor="let arrendador of arrendadores" [value]="arrendador.id">
-                        {{ arrendador.nombre }} 
+                        {{arrendador.nombre}} 
                       </mat-option>
                     </mat-select>
                 </mat-form-field>
