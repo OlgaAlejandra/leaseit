@@ -14,6 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -35,7 +36,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSidenavModule,
     MatCardModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
   exports:[
     MatSliderModule,
@@ -52,6 +54,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatListModule,
     MatSelectModule,
+    MatRadioModule
   ]
 })
 export class AngularMaterialModule { }

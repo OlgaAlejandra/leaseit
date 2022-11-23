@@ -124,37 +124,43 @@
                     <input
                       matInput
                       type="number"
-                      placeholder="Tiempo"
+                      placeholder="Tiempo en Años"
                       formControlName="tiempo"
                       required
                     />
                   </mat-form-field>
                   
                   <mat-form-field>
-                    <input
-                      matInput
-                      type="number"
-                      placeholder="Periodo de gracia parcial"
-                      formControlName="pgp_flag"
-                      required
-                    />
+                    <mat-label>¿Periodo de Gracia Parcial?</mat-label>
+                    <mat-select matInput formControlName="pgp_flag" matNativeControl required>
+                    <mat-option [value]=true>Si</mat-option>
+                    <mat-option [value]=false>No</mat-option>
+                  </mat-select>
                   </mat-form-field>
 
                   <mat-form-field>
                     <input
                       matInput
                       type="number"
-                      placeholder="Periodo de gracia total"
-                      formControlName="pgt_flag"
+                      placeholder="T. Periodo de gracia parcial"
+                      formControlName="pgp_time"
                       required
                     />
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>¿Periodo de Gracia Total?</mat-label>
+                    <mat-select matInput formControlName="pgt_flag" matNativeControl required>
+                    <mat-option [value]=true>Si</mat-option>
+                    <mat-option [value]=false>No</mat-option>
+                  </mat-select>
                   </mat-form-field>
                   
                   <mat-form-field>
                     <input
                       matInput
                       type="number"
-                      placeholder=" T. Periodo de gracia total"
+                      placeholder="T.Periodo de gracia total"
                       formControlName="pgt_time"
                       required
                     />
@@ -170,19 +176,17 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input
-                      matInput
-                      type="number"
-                      placeholder="Moneda"
-                      formControlName="moneda"
-                      required
-                    />
+                  <mat-label>Moneda</mat-label>
+                  <mat-select matInput formControlName="moneda" matNativeControl required>
+                    <mat-option value="Soles">Soles</mat-option>
+                    <mat-option value="Dolares">Dolares</mat-option>
+                    <mat-option value="Euros">Euros</mat-option>
+                  </mat-select>
                   </mat-form-field>
 
                   <mat-form-field>
                     <input
                       matInput
-                      type="number"
                       placeholder=" Tipo de Tasa"
                       formControlName="tasa_type"
                       required
@@ -192,7 +196,6 @@
                   <mat-form-field>
                     <input
                       matInput
-                      type="number"
                       placeholder=" Tiempo de tasa"
                       formControlName="t_tasa"
                       required
@@ -200,14 +203,25 @@
                   </mat-form-field>
 
                   <mat-form-field>
-                    <input
-                      matInput
-                      type="number"
-                      placeholder=" Numero de Peridos"
-                      formControlName="n_periodos"
-                      required
-                    />
+                    <mat-label>Frecuencia de pago</mat-label>
+                    <mat-select  formControlName="f_pago"  required>
+                    <mat-option value=>Mensual</mat-option>
+                    <mat-option [value]="60">Bimestral</mat-option>
+                    <mat-option [value]="90">Trimestral</mat-option>
+                    <mat-option [value]="120">Cuatrimestral</mat-option>
+                    <mat-option [value]="180">Semestral</mat-option>
+                    <mat-option [value]="360">Anual</mat-option>
+                  </mat-select>
                   </mat-form-field>
+                    <button
+                    
+                      [disabled]="myForm.invalid"
+                      type="button"
+                      style="margin-left: 10 px"
+                      (click)="saveOperation()"
+                    > <span>Calcular</span>
+                
+                    </button>
                </form>
 
 

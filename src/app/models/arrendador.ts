@@ -1,10 +1,10 @@
 export interface Arrendador{
     id:number;
     nombre: string;
-    TEP: number;
+    tep: number;
     p_recompra:number;
     comision:number;
     s_riesgo:number;
     tasa_type:string;
-    t_tasa:number;
+    t_tasa:string;
 }

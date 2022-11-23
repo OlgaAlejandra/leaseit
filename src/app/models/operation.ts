@@ -7,9 +7,9 @@ export interface Operation {
     moneda:string;
     pgp_flag:boolean;
     pgt_flag:boolean;
-    pgt_time:number;
-    pgp_time:number;
+    pgt_count:number;
+    pgp_count:number;
     p_financiado:number;
     tiempo_o:number;
-    frecuencia_p:number;
+    frecuencia:number;
 }

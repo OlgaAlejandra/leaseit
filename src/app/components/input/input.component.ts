@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { OperationService } from 'src/app/services/operation.service';
 
 @Component({
   selector: 'app-input',
@@ -21,13 +22,15 @@ export class InputComponent implements OnInit {
   user!: User;
   activos: Activo[]=[];
   arrendadores: Arrendador[]=[];
-  activo?: Activo;
-  arrendador?: Arrendador;
+  activo!: Activo;
+  arrendador!: Arrendador;
   idUser: any;
+  frecuencia!: number;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private activosService: ActivoService,
+    private operationService: OperationService,
     private arrendadoresService: ArrendadorService,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -35,8 +38,10 @@ export class InputComponent implements OnInit {
 
   ngOnInit(): void {
     
-    const variable = this.route.snapshot.paramMap.get('id');
-    this.idUser = variable;
+    this.userService.getUserId(this.route.snapshot.paramMap.get('id')).subscribe((data)=>{
+      this.user=data;
+      this.idUser=this.user.id
+    })
     this.reactiveForm();
     this.getData();
   }
@@ -56,64 +61,114 @@ export class InputComponent implements OnInit {
   }
   reactiveForm(){
     this.myForm=this.fb.group({
-      activo: ['', Validators.required],
-      arrendador:['', Validators.required],
-      moneda:['', Validators.required],
-      prestamo:['',Validators.required],
-      tasa:['',Validators.required],
-      tiempo:['',Validators.required],
-      pgp_flag:['',Validators.required],
-      pgp_time:['',Validators.required],
-      pgt_flag:['',Validators.required],
-      pgt_time:['',Validators.required],
-      n_periodos:['',Validators.required],
-      tasa_type:['',Validators.required],
-      t_tasa:['',Validators.required],
+      activo: ['', [Validators.required]],
+      arrendador:['', [Validators.required]],
+      moneda:['', [Validators.required]],
+      prestamo:['',[Validators.required]],
+      tasa:['',[Validators.required]],
+      tiempo:['',[Validators.required]],
+      pgp_flag:['',[Validators.required]],
+      pgp_time:['',[Validators.required]],
+      pgt_flag:['',[Validators.required]],
+      pgt_time:['',[Validators.required]],
+      f_pago:['',[Validators.required]],
+      tasa_type:['',[Validators.required]],
+      t_tasa:['',[Validators.required]],
 
     })
   }
   fillActivo(){
-    var temporal = [(this.myForm.get('activo')?.value)];
+    var temporal = [(this.myForm.get('activo')!.value)];
     console.log(temporal)
-    this.activosService.getActivoId(this.myForm.get('activo')?.value).subscribe((data: Activo)=>{
+    this.activosService.getActivoId(this.myForm.get('activo')!.value).subscribe((data: Activo)=>{
+      this.activo=data;
       this.myForm = this.fb.group({
-        activo: [data.id, Validators.required],
-        arrendador:[this.myForm.get('arrendador')?.value, [Validators.required]],
-        moneda:[this.myForm.get('moneda')?.value,[Validators.required]],
-        prestamo:[data.precio,Validators.required],
-        tasa:[this.myForm.get('tasa')?.value,[Validators.required]],
-        tiempo:[this.myForm.get('tiempo')?.value,[Validators.required]],
-        pgp_flag:[this.myForm.get('pgp_flag')?.value,[Validators.required]],
-        pgp_time:[this.myForm.get('pgp_time')?.value,[Validators.required]],
-        pgt_flag:[this.myForm.get('pgt_flag')?.value,[Validators.required]],
-        pgt_time:[this.myForm.get('pgt_time')?.value,[Validators.required]],
-        n_periodos:[this.myForm.get('n_periodos')?.value,[Validators.required]],
-        tasa_type:[this.myForm.get('tasa_type')?.value,[Validators.required]],
-        t_tasa:[this.myForm.get('t_tasa')?.value,[Validators.required]],
+        activo: [data.id, [Validators.required]],
+        arrendador:[this.myForm.get('arrendador')!.value, [Validators.required]],
+        moneda:[this.myForm.get('moneda')!.value,[Validators.required]],
+        prestamo:[data.precio,[Validators.required]],
+        tasa:[this.myForm.get('tasa')!.value,[Validators.required]],
+        tiempo:[this.myForm.get('tiempo')!.value,[Validators.required]],
+        pgp_flag:[this.myForm.get('pgp_flag')!.value,[Validators.required]],
+        pgp_time:[this.myForm.get('pgp_time')!.value,[Validators.required]],
+        pgt_flag:[this.myForm.get('pgt_flag')!.value,[Validators.required]],
+        pgt_time:[this.myForm.get('pgt_time')!.value,[Validators.required]],
+        f_pago:[this.myForm.get('f_pago')!.value,[Validators.required]],
+        tasa_type:[this.myForm.get('tasa_type')!.value,[Validators.required]],
+        t_tasa:[this.myForm.get('t_tasa')!.value,[Validators.required]],
       })})
     
     console.log(this.myForm.value)
   } 
   fillArrendador(){
-    this.arrendadoresService.getArrendadorId(this.myForm.get('arrendador')?.value).subscribe((data: Arrendador)=>{
+    this.arrendadoresService.getArrendadorId(this.myForm.get('arrendador')!.value).subscribe((data: Arrendador)=>{
+      this.arrendador=data;
       this.myForm = this.fb.group({
-        activo: [this.myForm.get('activo')?.value, [Validators.required]],
+        activo: [this.myForm.get('activo')!.value, [Validators.required]],
         arrendador:[data.id, [Validators.required]],
-        moneda:[this.myForm.get('moneda')?.value, [Validators.required]],
-        prestamo:[this.myForm.get('prestamo')?.value,[Validators.required]],
-        tasa:[data.TEP,[Validators.required]],
-        tiempo:[this.myForm.get('tiempo')?.value,[Validators.required]],
-        pgp_flag:[this.myForm.get('pgp_flag')?.value,[Validators.required]],
-        pgp_time:[this.myForm.get('pgp_time')?.value,[Validators.required]],
-        pgt_flag:[this.myForm.get('pgt_flag')?.value,[Validators.required]],
-        pgt_time:[this.myForm.get('pgt_time')?.value,[Validators.required]],
-        n_periodos:[this.myForm.get('n_periodos')?.value,[Validators.required]],
-        tasa_type:[data.tasa_type,,Validators.required],
-        t_tasa:[data.t_tasa,,Validators.required],
+        moneda:[this.myForm.get('moneda')!.value, [Validators.required]],
+        prestamo:[this.myForm.get('prestamo')!.value,[Validators.required]],
+        tasa:[data.tep,[Validators.required]],
+        tiempo:[this.myForm.get('tiempo')!.value,[Validators.required]],
+        pgp_flag:[this.myForm.get('pgp_flag')!.value,[Validators.required]],
+        pgp_time:[this.myForm.get('pgp_time')!.value,[Validators.required]],
+        pgt_flag:[this.myForm.get('pgt_flag')!.value,[Validators.required]],
+        pgt_time:[this.myForm.get('pgt_time')!.value,[Validators.required]],
+        f_pago:[Number(this.myForm.get('f_pago')!.value),[Validators.required]],
+        tasa_type:[data.tasa_type,[Validators.required]],
+        t_tasa:[data.t_tasa,[Validators.required]],
       })})
       console.log(this.myForm.value)
+      console.log( this.arrendadoresService.getArrendadorId(this.myForm.get('arrendador')!.value))
   }
-  changeClient(value: any) {
-    console.log(value);
-}
+  saveOperation(){
+    this.userService.getUsers()
+    .subscribe(res=>{
+      const usu = res.find((a:any)=>{
+        return a.id === this.idUser;
+      });
+      if(usu){
+        console.log();
+        const operation: Operation = {
+          id_operation:0,
+          user:usu,
+          arrendador:this.arrendador,
+          activo:this.activo,
+          moneda:this.myForm.get('moneda')!.value,
+          pgp_flag:this.myForm.get('pgp_flag')!.value,
+          pgt_flag:this.myForm.get('pgt_flag')!.value,
+          pgt_count:this.myForm.get('pgt_time')!.value,
+          pgp_count:this.myForm.get('pgp_time')!.value,
+          p_financiado:this.myForm.get('prestamo')!.value,
+          tiempo_o:this.myForm.get('tiempo')!.value,
+          frecuencia:this.myForm.get("f_pago")!.value
+        };
+      console.log(operation);
+      this.operationService.addOperation(operation).subscribe({ 
+          next: (data) => {
+          this.snackBar.open('La operacion fue registrado con exito!', '', {
+            duration: 2000,
+          });
+          this.router.navigate(['/login-user']);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+      }else{
+        this.snackBar.open(' No se añadio el profile!', '', {
+          duration: 3000,
+        });
+      }
+    },err=>{
+      alert("Algo esta mal!")
+    })
+    console.log(this.myForm.value)
+    console.log(this.arrendador)
+    console.log(this.activo)
+    }
+   Conversion(input :string){
+    var numeric = Number(input);
+    return numeric
+  }
 }
