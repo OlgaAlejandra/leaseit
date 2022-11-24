@@ -41,25 +41,41 @@ export class OutputComponent implements OnInit {
 'Seguro Riesgo','Recompra','Saldo Final','Depreciacion','Ahorro Tributario','IGV','Flujo Bruto',
 'Flujo con IGV','Flujo Neto'];
   dataSource = new MatTableDataSource<Output>();
-  output! : Output[];
+  output: Output[]=[];
   operation!: Operation;
   constructor(private operationService: OperationService) { }
   ngOnInit(): void {
-    this.EntryData();
-   
+    this.EntryData();   
   }
-
   EntryData(){
-    this.operationService.getOperationId(1).subscribe((data: Operation) => {
-     this.operation=data;
+    this.operationService.getOperationId(1).subscribe((data: any) => {
+      this.operation=data;
+    },(error: any) => {
+      console.log('error al consultar activos');
     });
-    console.log(((this.operation.tiempo_o*360))/this.operation.frecuencia)
   }
   fillTable(input: Operation){
-    for (let i = 0; i < ((this.operation.tiempo_o*360))/this.operation.frecuencia; i++) {
+    var temp!: Output;
+    for (let i = 0; i <= ((this.operation.tiempo_o*360))/this.operation.frecuencia; i++) {
+        temp.periodo=i;
+        if(this.operation.pgp_flag==false && this.operation.pgt_flag ==false){
+          temp.pg='S'}
+        else if(this.operation.pgp_flag==true){
+          temp.pg='P'
+        }
+        else if(this.operation.pgt_flag==true){
+          temp.pg='T'
+        }
+        temp.saldo_i=0
+        temp.cuota=0
+        
 
-        this.output[i].periodo
     }
   }
+  test(){
+    console.log(this.operation);
+    console.log(((this.operation.tiempo_o*360))/this.operation.frecuencia)
+  }
+
 
 }
