@@ -18,7 +18,6 @@ const routes: Routes = [
   {path:'list-activos', component:ListActivosComponent},
   {path:'list-arrendadores', component:ListArrendadoresComponent},
   {path:'list-operations/:id', component:ListOperationsComponent},
-
   {path:'final-output/:id', component:OutputComponent}
 ];
 
