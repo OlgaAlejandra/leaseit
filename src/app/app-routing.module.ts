@@ -1,3 +1,4 @@
+import { ListOperationsComponent } from './components/list-operations/list-operations.component';
 import { OutputComponent } from './components/output/output.component';
 import { ListArrendadoresComponent } from './components/list-arrendadores/list-arrendadores.component';
 import { ListActivosComponent } from './components/list-activos/list-activos.component';
@@ -13,11 +14,12 @@ const routes: Routes = [
   {path:'', component:LoginComponent},
   {path:'input-data/:id', component: InputComponent},
   {path:'',redirectTo:'',pathMatch:'full'},
-  {path:'home/:id', component: MenuComponent,
-  children : [
+  {path:'home/:id', component: MenuComponent},
   {path:'list-activos', component:ListActivosComponent},
   {path:'list-arrendadores', component:ListArrendadoresComponent},
-  {path:'final-output', component:OutputComponent}]}
+  {path:'list-operations/:id', component:ListOperationsComponent},
+
+  {path:'final-output/:id', component:OutputComponent}
 ];
 
 @NgModule({

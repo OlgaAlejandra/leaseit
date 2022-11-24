@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-lg-6">
+      <h2>Listado de Activos</h2>
+    </div>
+</div>
+  
+  <mat-form-field appearance="standard">
+    <mat-label>Buscar</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Po nombre, correo o telefono"
+      #input
+    />
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="activo">
+      <th mat-header-cell *matHeaderCellDef>Activo</th>
+      <td mat-cell *matCellDef="let element">{{ element.activo.nombre }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="arrendador">
+      <th mat-header-cell *matHeaderCellDef>Arrendador</th>
+      <td mat-cell *matCellDef="let element">{{ element.arrendador.nombre }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="tiempo">
+      <th mat-header-cell *matHeaderCellDef>Tiempo</th>
+      <td mat-cell *matCellDef="let element">{{ element.tiempo_o }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <button
+          mat-stroked-button color="primary"
+          [routerLink]="['final-output',element.id]"
+
+        >
+          <mat-icon aria-label="Edit">Leasing</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+    
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+  
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+  

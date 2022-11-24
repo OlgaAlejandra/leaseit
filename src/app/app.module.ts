@@ -14,6 +14,7 @@ import { InputComponent } from './components/input/input.component';
 import { ListActivosComponent } from './components/list-activos/list-activos.component';
 import { ListArrendadoresComponent } from './components/list-arrendadores/list-arrendadores.component';
 import { OutputComponent } from './components/output/output.component';
+import { ListOperationsComponent } from './components/list-operations/list-operations.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OutputComponent } from './components/output/output.component';
     ListActivosComponent,
     ListArrendadoresComponent,
     OutputComponent,
-    InputComponent
+    InputComponent,
+    ListOperationsComponent
   ],
   imports: [
     BrowserModule,

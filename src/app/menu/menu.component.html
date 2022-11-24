@@ -5,9 +5,9 @@
       <img src="assets/img/log.png" class="logo">
       <ul>
         <li><a routerLink="/home">Home</a></li>
-        <li><a href="#">Leasing</a></li>
-        <li><a routerLink="/list-activos">Activos</a></li>
-        <li><a routerLink="/list-arrendadores">Arrendadores</a></li>
+        <li><a [routerLink]="['/list-operations',route.snapshot.paramMap.get('id')]">Leasing</a></li>
+        <li><a [routerLink]="['/list-activos']">Activos</a></li>
+        <li><a [routerLink]="['/list-arrendadores']">Arrendadores</a></li>
       </ul>
     </div>
     <div class="content">

@@ -149,7 +149,7 @@ export class InputComponent implements OnInit {
           this.snackBar.open('La operacion fue registrado con exito!', '', {
             duration: 2000,
           });
-          this.router.navigate(['/login-user']);
+          this.router.navigate(['/home/'+this.idUser]);
         },
         error: (err) => {
           console.log(err);

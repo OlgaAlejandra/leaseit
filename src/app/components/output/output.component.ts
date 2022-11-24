@@ -1,3 +1,4 @@
+import { OperationService } from 'src/app/services/operation.service';
 import { Arrendador } from './../../models/arrendador';
 import { Activo } from './../../models/activo';
 import { Output } from './../../models/output';
@@ -7,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivoService } from 'src/app/services/activo.service';
 import { ArrendadorService } from 'src/app/services/arrendador.service';
+import { DataSource } from '@angular/cdk/collections';
 
 const ELEMENT_DATA: Output[]=[
   
@@ -35,33 +37,29 @@ const ELEMENT_DATA: Output[]=[
   styleUrls: ['./output.component.css']
 })
 export class OutputComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'nombre', 'TEP'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  arrendador!: Arrendador;
-  activo!: Activo
-  columns=[
-    {titulo:"test",name:"id"}
-  ]
-  constructor(private arrendadorService: ArrendadorService,
-              private activoService: ActivoService) { }
-  /*Originalmente como pueden ver en la otra clase con datos de entradas
-  jalamos los datos que vienen con el activo y el arrendador asi que eso mismo pienso hacer
-  vallan ideando una manera de llenar el arreglo con el for siguiendo la logica del excel porfavor
-  voy a estar ocupado con otro curso hasta el domingo*/
+  displayedColumns: string[] = ['n°', 'P.G', 'Saldo Inicial','Intereses','Cuota','Amortizacion',
+'Seguro Riesgo','Recompra','Saldo Final','Depreciacion','Ahorro Tributario','IGV','Flujo Bruto',
+'Flujo con IGV','Flujo Neto'];
+  dataSource = new MatTableDataSource<Output>();
+  output! : Output[];
+  operation!: Operation;
+  constructor(private operationService: OperationService) { }
   ngOnInit(): void {
     this.EntryData();
-    ELEMENT_DATA.push()
-    for (let i = 0; i < 5; i++) {
-    }
+   
   }
 
   EntryData(){
-    this.arrendadorService.getArrendadorId(1).subscribe((data:Arrendador)=>{
-      this.arrendador = data;
+    this.operationService.getOperationId(1).subscribe((data: Operation) => {
+     this.operation=data;
     });
-    this.activoService.getActivoId(1).subscribe((data:Activo)=>{
-      this.activo = data;
-    });
+    console.log(((this.operation.tiempo_o*360))/this.operation.frecuencia)
+  }
+  fillTable(input: Operation){
+    for (let i = 0; i < ((this.operation.tiempo_o*360))/this.operation.frecuencia; i++) {
+
+        this.output[i].periodo
+    }
   }
 
 }
