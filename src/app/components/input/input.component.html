@@ -205,7 +205,7 @@
                   <mat-form-field>
                     <mat-label>Frecuencia de pago</mat-label>
                     <mat-select  formControlName="f_pago"  required>
-                    <mat-option value=>Mensual</mat-option>
+                    <mat-option [value]="30">Mensual</mat-option>
                     <mat-option [value]="60">Bimestral</mat-option>
                     <mat-option [value]="90">Trimestral</mat-option>
                     <mat-option [value]="120">Cuatrimestral</mat-option>

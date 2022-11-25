@@ -4,7 +4,11 @@ table {
     
   }
   .mat-form-field {
-    font-size: 14px;
+    font-size: 7px;
     width: 120px;
+    padding: px;
   }
-  
+ .celda{
+  margin-right: 80px;
+  margin-left: 30px;
+ }

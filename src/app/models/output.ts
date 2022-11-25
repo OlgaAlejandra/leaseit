@@ -39,7 +39,7 @@ export class Output{
             this.flujo_neto=p;
     };
     
-    setPeriodo(p: number){
+    setPeriodo(p: number) {
         this.periodo=p
     }
     setPG(p: string){

@@ -1,88 +1,88 @@
 <div class="row">
     <div class="col-lg-6">
-      <h2>Listado de Activos</h2>
+      <h2>Leasing Operation</h2>
     </div>
 </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="periodo">
         <th mat-header-cell *matHeaderCellDef>Nº</th>
-        <td mat-cell *matCellDef="let element">{{ element.periodo }}</td>
+        <td class="celda" mat-cell *matCellDef="let element">{{ element.periodo }}</td>
     </ng-container>
 
     <ng-container matColumnDef="pg">
         <th mat-header-cell *matHeaderCellDef>Tipo Periodo</th>
-        <td mat-cell *matCellDef="let element">{{ element.pg }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.pg }}</td>
     </ng-container>
 
     <ng-container matColumnDef="saldo_i">
         <th mat-header-cell *matHeaderCellDef>Saldo I.</th>
-        <td mat-cell *matCellDef="let element">{{ element.saldo_i }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.saldo_i }}</td>
     </ng-container>
 
     <ng-container matColumnDef="interes">
         <th mat-header-cell *matHeaderCellDef>Interes</th>
-        <td mat-cell *matCellDef="let element">{{ element.interes }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.interes }}</td>
     </ng-container>
 
     <ng-container matColumnDef="cuota">
         <th mat-header-cell *matHeaderCellDef>Cuota</th>
-        <td mat-cell *matCellDef="let element">{{ element.cuota }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.cuota }}</td>
     </ng-container>
 
     <ng-container matColumnDef="amortizacion">
-        <th mat-header-cell *matHeaderCellDef>Amortizacion</th>
-        <td mat-cell *matCellDef="let element">{{ element.amortizacion }}</td>
+        <th mat-header-cell *matHeaderCellDef>0Amortizacion</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.amortizacion }}</td>
     </ng-container>
 
     <ng-container matColumnDef="s_riesgo">
         <th mat-header-cell *matHeaderCellDef>S.Riesgo</th>
-        <td mat-cell *matCellDef="let element">{{ element.s_riesgo }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.s_riesgo }}</td>
     </ng-container>
 
     <ng-container matColumnDef="comision">
         <th mat-header-cell *matHeaderCellDef>Comision</th>
-        <td mat-cell *matCellDef="let element">{{ element.comision }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.comision }}</td>
     </ng-container>
 
     <ng-container matColumnDef="recompra">
         <th mat-header-cell *matHeaderCellDef>Recompra</th>
-        <td mat-cell *matCellDef="let element">{{ element.recompra }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.recompra }}</td>
     </ng-container>
 
     <ng-container matColumnDef="saldo_f">
         <th mat-header-cell *matHeaderCellDef>Saldo F.</th>
-        <td mat-cell *matCellDef="let element">{{ element.saldo_f }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.saldo_f }}</td>
     </ng-container>
 
     <ng-container matColumnDef="depreciacion">
         <th mat-header-cell *matHeaderCellDef>Depreciacion</th>
-        <td mat-cell *matCellDef="let element">{{ element.depreciacion }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.depreciacion }}</td>
     </ng-container>
 
     <ng-container matColumnDef="a_tributario">
         <th mat-header-cell *matHeaderCellDef>A.Tributario</th>
-        <td mat-cell *matCellDef="let element">{{ element.a_tributario }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.a_tributario }}</td>
     </ng-container>
 
     <ng-container matColumnDef="IGV">
         <th mat-header-cell *matHeaderCellDef>IGV</th>
-        <td mat-cell *matCellDef="let element">{{ element.igv }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.IGV }}</td>
     </ng-container>
 
     <ng-container matColumnDef="f_bruto">
         <th mat-header-cell *matHeaderCellDef>F.Bruto</th>
-        <td mat-cell *matCellDef="let element">{{ element.f_bruto }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.f_bruto }}</td>
     </ng-container>
 
     <ng-container matColumnDef="f_bruto_igv">
         <th mat-header-cell *matHeaderCellDef>F.Bruto+IGV</th>
-        <td mat-cell *matCellDef="let element">{{ element.f_bruto_igv }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.f_bruto_igv }}</td>
     </ng-container>
 
     <ng-container matColumnDef="flujo_neto">
         <th mat-header-cell *matHeaderCellDef>F.Neto</th>
-        <td mat-cell *matCellDef="let element">{{ element.flujo_neto }}</td>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.flujo_neto }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
