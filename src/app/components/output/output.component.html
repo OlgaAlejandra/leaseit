@@ -88,7 +88,126 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-    
 </table>
-<button (click)="test()">AASDAD</button>
+<!-- <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="cigv">
+        <th mat-header-cell *matHeaderCellDef>Nº</th>
+        <td class="celda" mat-cell *matCellDef="let element">{{ element.cigv }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cv_venta_activo">
+        <th mat-header-cell *matHeaderCellDef>Tipo Periodo</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.cv_venta_activo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ctep">
+        <th mat-header-cell *matHeaderCellDef>Saldo I.</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.ctep }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ccuotas_anuales">
+        <th mat-header-cell *matHeaderCellDef>Interes</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.ccuotas_anuales }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ccuota">
+        <th mat-header-cell *matHeaderCellDef>Cuota</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.ccuota }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="camortizacion">
+        <th mat-header-cell *matHeaderCellDef>0Amortizacion</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.camortizacion }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cs_riesgo">
+        <th mat-header-cell *matHeaderCellDef>S.Riesgo</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.cs_riesgo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cinteres">
+        <th mat-header-cell *matHeaderCellDef>Comision</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.cinteres }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="camortizacion">
+        <th mat-header-cell *matHeaderCellDef>Recompra</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.camortizacion }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cs_riesgo_all">
+        <th mat-header-cell *matHeaderCellDef>Saldo F.</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.cs_riesgo_all }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ccomisiones">
+        <th mat-header-cell *matHeaderCellDef>Depreciacion</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.ccomisiones }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ca_tributario">
+        <th mat-header-cell *matHeaderCellDef>A.Tributario</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.ca_tributario }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="crecompra">
+        <th mat-header-cell *matHeaderCellDef>IGV</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.crecompra }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cdesembolso">
+        <th mat-header-cell *matHeaderCellDef>F.Bruto</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.cdesembolso }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ctcea_fb">
+        <th mat-header-cell *matHeaderCellDef>F.Bruto+IGV</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.ctcea_fb }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ctcea_fn">
+        <th mat-header-cell *matHeaderCellDef>F.Neto</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.ctcea_fn }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cvan_fb">
+        <th mat-header-cell *matHeaderCellDef>F.Neto</th>
+        <td class="celda"mat-cell *matCellDef="let element">c{{ element.cvan_fb }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cvan_fn">
+        <th mat-header-cell *matHeaderCellDef>F.Neto</th>
+        <td class="celda"mat-cell *matCellDef="let element">{{ element.cvan_fn }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+
+    
+    
+</table> -->
+<button (click)="test()">Mostrar Leasing</button>
+
+<form [formGroup]="myForm">
+    <mat-form-field>
+        <input
+          matInput
+          type="number"
+          placeholder="Tiempo en Años"
+          formControlName="ks"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          placeholder="Tiempo en Años"
+          formControlName="wacc"
+          required
+        />
+      </mat-form-field>
+      <button (click)="fillIndicadores()">Conseguir Indicadores de Rentabilidad</button>
+</form>
    
