@@ -7,6 +7,9 @@ import { Operation } from './../../models/operation';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Conclusion } from 'src/app/models/conclusion';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { irr } from 'node-irr';
 import { ActivoService } from 'src/app/services/activo.service';
 import { ArrendadorService } from 'src/app/services/arrendador.service';
 import { DataSource } from '@angular/cdk/collections';
@@ -21,19 +24,25 @@ import { ThisReceiver } from '@angular/compiler';
 export class OutputComponent implements OnInit {
   displayedColumns: string[] = ['periodo','pg','saldo_i','interes','cuota',
 'amortizacion','s_riesgo','comision','recompra','saldo_f','depreciacion',
-'a_tributario','IGV','f_bruto','f_bruto_igv','flujo_neto']
+'a_tributario','IGV','f_bruto','f_bruto_igv','flujo_neto'];
+ /*displayedColumns2: string[] = ['cigv','cv_venta_activo','ctep','ccuotas_anuales','ccuota',
+'camortizacion','cs_riesgo','cinteres','camortizacion','cs_riesgo_all','ccomisiones',
+'ca_tributario','crecompra','cdesembolso','ctcea_fb','ctcea_fn','cvan_fb','cvan_fn']*/
+ public myForm!: FormGroup;
   dataSource = new MatTableDataSource<Output>();
+  dataSource2 = new MatTableDataSource<Conclusion>();
   outputs: Output[]=[];
   operation!: Operation;
-
+  conclusion: Conclusion= new Conclusion();
   activo!: Activo;
   arrendador!: Arrendador;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  constructor(private operationService: OperationService) { }
+  constructor(private operationService: OperationService,private fb: FormBuilder) { }
   ngOnInit(): void {
     this.EntryData();
-    this.fillTable(this.operation);   
+    this.reactiveForm();
+    this.fillTable(this.operation);
     
   }
   EntryData(){
@@ -122,6 +131,7 @@ export class OutputComponent implements OnInit {
       console.log(result)
       this.outputs.push(result);
     }
+    this.dataSource = new MatTableDataSource(this.outputs);
   }
   test(){
     console.log(this.operation);
@@ -132,6 +142,8 @@ export class OutputComponent implements OnInit {
     console.log(this.getTiempoTasaEfectivaPeriodica(this.arrendador.t_tasa));
     console.log(this.getTasaEfectivaPeriodica(this.operation.frecuencia,this.arrendador.tep,
       this.arrendador.tasa_type,this.getTiempoTasaEfectivaPeriodica(this.arrendador.t_tasa)));
+    console.log(this.getInteres(this.outputs))
+    console.log(this.getTIRBruto(this.outputs)*0.01)
     
   }
 
@@ -169,5 +181,81 @@ export class OutputComponent implements OnInit {
         break;
     }
     return tiempo;
+  }
+  reactiveForm(){
+    this.myForm=this.fb.group({
+      ks: ['', [Validators.required]],
+      wacc:['', [Validators.required]],
+    })
+  }
+  fillIndicadores(){
+    const conclusionn: Conclusion = {
+      cigv: this.activo.precio-(this.activo.precio/1.18),
+      cv_venta_activo:this.activo.precio/1.18,
+      ctep:this.getTasaEfectivaPeriodica(this.operation.frecuencia,this.arrendador.tep,
+        this.arrendador.tasa_type,this.getTiempoTasaEfectivaPeriodica(this.arrendador.t_tasa)),
+      ccuotas_anuales:360/this.operation.frecuencia,
+      ccuotas:((this.operation.tiempo_o*360)/this.operation.frecuencia),
+      cs_riesgo:(this.activo.precio*(this.arrendador.s_riesgo/100)/12),
+      cinteres:this.getInteres(this.outputs),
+      camortizacion:this.getAmortizacion(this.outputs),
+      cs_riesgo_all:this.getSRiesgo(this.outputs),
+      ccomisiones:this.getComision(this.outputs),
+      crecompra:((this.activo.precio/1.18)*(this.arrendador.p_recompra/100)),
+      cdesembolso:this.getInteres(this.outputs)+this.getAmortizacion(this.outputs)+
+      this.getSRiesgo(this.outputs)+this.getComision(this.outputs)+
+      ((this.activo.precio/1.18)*(this.arrendador.p_recompra/100)),
+      
+
+      
+    }
+  } 
+  getInteres(input: Output[]){
+    var x: number = 0;
+    input.forEach((element: Output) => {
+      x += element.interes;
+    });
+    return x;
+  }
+  getAmortizacion(input: Output[]){
+    var x: number = 0;
+    input.forEach((element: Output) => {
+      x += element.amortizacion;
+    });
+    return x;
+  }
+  getSRiesgo(input: Output[]){
+    var x: number = 0;
+    input.forEach((element: Output) => {
+      x += element.s_riesgo;
+    });
+    return x;
+  }
+  getComision(input: Output[]){
+    var x: number = 0;
+    input.forEach((element: Output) => {
+      x += element.comision;
+    });
+    return x;
+  }
+  getTIRBruto(input: Output[]){
+    var i: number[] =[];
+    input.forEach((element: Output) => {
+      if(element.periodo==0){
+        i.push(element.f_bruto);
+      }
+      i.push(-element.f_bruto)
+    });
+    var inc:number = 0.00000001;
+    var guest: number =0.0001;
+    var NPV: number =0;
+    do {
+        guest += inc;
+        NPV = 0;
+        for (var j=0; j < i.length; j++) {
+            NPV += i[j] / Math.pow((1 + guest), j);
+        }
+    } while (NPV > 0);
+    return guest * 100;
   }
 }

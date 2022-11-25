@@ -13,7 +13,6 @@ const routes: Routes = [
   {path:'signup-user', component: SignUpComponent},
   {path:'', component:LoginComponent},
   {path:'input-data/:id', component: InputComponent},
-  {path:'',redirectTo:'',pathMatch:'full'},
   {path:'home/:id', component: MenuComponent},
   {path:'list-activos', component:ListActivosComponent},
   {path:'list-arrendadores', component:ListArrendadoresComponent},

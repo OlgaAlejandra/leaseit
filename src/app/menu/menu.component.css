@@ -29,6 +29,7 @@
     display: inline-block;
     margin: 0 20px;
     position: relative;
+    cursor: pointer;
 }
 .navbar ul li a{
     text-decoration: none;
@@ -43,7 +44,7 @@
     position: absolute;
     left: 0;
     bottom: -10px;
-    transition: 0.4s;
+    transition: 0.2s;
 }
 .navbar ul li:hover::after{
  width: 100%;
