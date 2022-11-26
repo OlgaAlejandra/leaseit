@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Conclusion } from 'src/app/models/conclusion';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Finance} from 'excel-npv'
 import { irr } from 'node-irr';
 import { ActivoService } from 'src/app/services/activo.service';
 import { ArrendadorService } from 'src/app/services/arrendador.service';
@@ -205,10 +206,17 @@ export class OutputComponent implements OnInit {
       cdesembolso:this.getInteres(this.outputs)+this.getAmortizacion(this.outputs)+
       this.getSRiesgo(this.outputs)+this.getComision(this.outputs)+
       ((this.activo.precio/1.18)*(this.arrendador.p_recompra/100)),
-      
-
-      
+      ctcea_fb:Math.pow((1+this.getTIRBruto(this.outputs)),(360/this.operation.frecuencia))-1,
+      ctcea_fn:Math.pow((1+this.getTIRNeto(this.outputs)),(360/this.operation.frecuencia))-1,
+      cvan_fb:this.vanBruto(Number(this.myForm.get('ks')!.value)/100,
+      (this.operation.activo.precio/1.18)+this.operation.activo.g_inicial,
+      this.outputs),
+      cvan_fn:this.vanBruto(Number(this.myForm.get('wacc')!.value)/100,
+      (this.operation.activo.precio/1.18)+this.operation.activo.g_inicial,
+      this.outputs)
     }
+    this.conclusion=conclusionn;
+    console.log(this.conclusion)
   } 
   getInteres(input: Output[]){
     var x: number = 0;
@@ -244,7 +252,9 @@ export class OutputComponent implements OnInit {
       if(element.periodo==0){
         i.push(element.f_bruto);
       }
-      i.push(-element.f_bruto)
+      else{
+        i.push(-element.f_bruto)
+      }
     });
     var inc:number = 0.00000001;
     var guest: number =0.0001;
@@ -258,4 +268,41 @@ export class OutputComponent implements OnInit {
     } while (NPV > 0);
     return guest * 100;
   }
+  getTIRNeto(input: Output[]){
+    var i: number[] =[];
+    input.forEach((element: Output) => {
+      if(element.periodo==0){
+        i.push(element.flujo_neto);
+      }
+        else{
+          i.push(-element.flujo_neto)
+        }
+    });
+    var inc:number = 0.00000001;
+    var guest: number =0.0001;
+    var NPV: number =0;
+    do {
+        guest += inc;
+        NPV = 0;
+        for (var j=0; j < i.length; j++) {
+            NPV += i[j] / Math.pow((1 + guest), j);
+        }
+    } while (NPV > 0);
+    return guest * 100;
+  }
+  vanBruto(tasa:number,c_inicial: number ,input: Output[]){
+    var x: number[] =[];
+    var npv: number=-c_inicial;
+    input.forEach((element: Output) => {
+      if(element.periodo !=0){
+        x.push(element.f_bruto)
+      }
+    });
+
+   for(let i = 0; i < x.length;i++){
+      npv+=x[i]/Math.pow(tasa+1,i+1)
+   }
+   return npv;
+  }
+  
 }
